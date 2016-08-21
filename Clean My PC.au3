@@ -138,7 +138,17 @@ Send("{ENTER}")
 
 ProcessWaitClose("adwcleaner.exe")
 
+ShellExecuteWait("clean\mbam-setup-2.2.1.1043.exe", "/silent /norestart", @ScriptDir)
+
+ShellExecute ("C:\Program Files (x86)\Malwarebytes Anti-Malware\mbam.exe")
+
+ProcessWaitClose("mbam.exe")
+
 ShellExecute (@ScriptDir & "\clean\ClamWinPortable\ClamWinPortable.exe")
+
+If MsgBox(4, "Remove Malwarebytes", "You want to remove malwarebytes ?") = 6 Then
+ShellExecuteWait("clean\mbam-clean-2.3.0.1001.exe", "/silent /norestart", @ScriptDir)
+Endif
 
 ;Fin du programme
 Exit
