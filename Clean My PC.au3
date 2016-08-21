@@ -30,7 +30,9 @@ Global $saved = "C:\Windows\System32\drivers\etc\hosts"
 If Not FileExists($saved) Then FileCopy($sPath, $saved) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($backup) Then FileCopy($saved, $backup)
+MsgBox(64,"Success", "Your hosts is saved")
 FileInstall ("Clean\hosts", "C:\Windows\System32\drivers\etc\hosts", 1)
+MsgBox(64,"Success", "New hosts is installed")
 
 ; ==================
 ; update launcher
@@ -119,7 +121,7 @@ Send("{ENTER}")
 
 ProcessWaitClose("jrt.exe")
 
-ShellExecute (@ScriptDir & "\clean\adwcleaner_6.000.exe")
+ShellExecute (@ScriptDir & "\clean\adwcleaner.exe")
 
 ;Récupération du "handler" de la fenêtre
 $Hndl = WinGetHandle("- AdwCleaner - Conditions d'utilisation -")
@@ -133,6 +135,10 @@ WinWaitActive ("- AdwCleaner - v6.000 - Toolslib -")
 ;Lancer la fonction de scan
 Send("{TAB}")
 Send("{ENTER}")
+
+ProcessWaitClose("adwcleaner.exe")
+
+ShellExecute (@ScriptDir & "\clean\ClamWinPortable\ClamWinPortable.exe")
 
 ;Fin du programme
 Exit
