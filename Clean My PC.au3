@@ -37,7 +37,6 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-MsgBox(64,"Success", "Your hosts is saved")
 FileInstall ("Clean\hosts", "C:\Windows\System32\drivers\etc\hosts", 1)
 MsgBox(64,"Success", "New hosts is installed")
 Endif
@@ -120,20 +119,29 @@ MsgBox(64,"Success", "Extract")
 EndFunc   ;==>_CheckVersion
 
 ;Lancement du prog d'installation
-If MsgBox(4, "Remove Malware & Adware", "You want to remove Malware and Adware from your PC ?") = 6 Then
+If MsgBox(4, "Remove Process", "You want to kill malicious process from your PC ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\rkill.exe")
+ShellExecute (@ScriptDir & "\clean\JRT.exe")
 
 ProcessWaitClose("rkill.exe")
 
-ShellExecute (@ScriptDir & "\clean\JRT.exe")
-Send("JRT.exe{ENTER}")
-
 ProcessWaitClose("jrt.exe")
+Endif
 
+If MsgBox(4, "Remove Malware & Adware", "You want to scan for remove Malware and Adware from your PC ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\adwcleaner.exe")
 
 ProcessWaitClose("adwcleaner.exe")
+
+ShellExecute (@ScriptDir & "\clean\ZHPCleaner.exe")
+
+ProcessWaitClose("ZHPCleaner.exe")
+
+ShellExecute (@ScriptDir & "\clean\RogueKiller.exe")
+
+ProcessWaitClose("RogueKiller.exe")
 Endif
+
 
 If MsgBox(4, "Install Malwarebytes", "You want to install Malwarebytes ?") = 6 Then
 ShellExecuteWait("clean\mbam-setup-2.2.1.1043.exe", "/verysilent /norestart", @ScriptDir)
