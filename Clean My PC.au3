@@ -1,3 +1,7 @@
+#RequireAdmin
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Outfile_type=a3x
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #cs ----------------------------------------------------------------------------
 
  AutoIt Version: 3.3.14.2
@@ -11,7 +15,6 @@
 ; Script Start - Add your code below here
 
 ;Application nécéssitant les droit d'admin
-#RequireAdmin
 
 #include <WinApi.au3>
 #include <GuiConstants.au3>
@@ -27,10 +30,11 @@
 ; save hosts
 
 If MsgBox(4, "Protect Hosts", "You want to protect your hosts ?") = 6 Then
-Global $saved = "C:\Windows\System32\drivers\etc\hosts"
-If Not FileExists($saved) Then FileCopy($sPath, $saved) ; backup in launch
+Global $sHostsPath = "C:\Windows\System32\drivers\etc\hosts"
+If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
+Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
+If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-If Not FileExists($backup) Then FileCopy($saved, $backup)
 MsgBox(64,"Success", "Your hosts is saved")
 FileInstall ("Clean\hosts", "C:\Windows\System32\drivers\etc\hosts", 1)
 MsgBox(64,"Success", "New hosts is installed")
@@ -120,7 +124,7 @@ ShellExecute (@ScriptDir & "\clean\rkill.exe")
 ProcessWaitClose("rkill.exe")
 
 ShellExecute (@ScriptDir & "\clean\JRT.exe")
-Send("{ENTER}")
+Send("JRT.exe{ENTER}")
 
 ProcessWaitClose("jrt.exe")
 
