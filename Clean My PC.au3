@@ -117,14 +117,14 @@ MsgBox(64,"Success", "Extract")
 	Return 0 ; error
 EndFunc   ;==>_CheckVersion
 
-;Lancement du prog d'installation
-If MsgBox(4, "Remove Process", "You want to kill malicious process from your PC ?") = 6 Then
+;Select your Program
+If MsgBox(4, "Remove Process", "You want to launch rkill ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\rkill.exe")
-
 ProcessWaitClose("rkill.exe")
+Endif
 
+If MsgBox(4, "Remove Process", "You want to launch JRT ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\JRT.exe")
-
 ProcessWaitClose("jrt.exe")
 Endif
 
