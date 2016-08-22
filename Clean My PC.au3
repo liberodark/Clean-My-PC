@@ -1,7 +1,6 @@
 #RequireAdmin
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Outfile_type=a3x
-#AutoIt3Wrapper_Outfile=C:\Users\bill6\OneDrive\Documents\GitHub\Clean-My-PC\Clean My PC.a3x
+#AutoIt3Wrapper_Outfile=C:\Users\bill6\OneDrive\Documents\GitHub\Clean-My-PC\Clean My PC.exe
 #AutoIt3Wrapper_Res_requestedExecutionLevel=requireAdministrator
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #cs ----------------------------------------------------------------------------
@@ -121,9 +120,10 @@ EndFunc   ;==>_CheckVersion
 ;Lancement du prog d'installation
 If MsgBox(4, "Remove Process", "You want to kill malicious process from your PC ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\rkill.exe")
-ShellExecute (@ScriptDir & "\clean\JRT.exe")
 
 ProcessWaitClose("rkill.exe")
+
+ShellExecute (@ScriptDir & "\clean\JRT.exe")
 
 ProcessWaitClose("jrt.exe")
 Endif
