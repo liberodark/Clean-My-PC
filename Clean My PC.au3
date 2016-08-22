@@ -137,8 +137,22 @@ Endif
 
 If MsgBox(4, "Install Malwarebytes", "You want to install Malwarebytes ?") = 6 Then
 ShellExecuteWait("clean\mbam-setup-2.2.1.1043.exe", "/silent /norestart", @ScriptDir)
+Endif
 
-ShellExecute ("C:\Program Files (x86)\Malwarebytes Anti-Malware\mbam.exe")
+; Check mbam.exe
+Local $sMBAM1 = "C:\Program Files (x86)\Malwarebytes Anti-Malware\mbam.exe"
+Local $sMBAM2 = "C:\Program Files\Malwarebytes Anti-Malware\mbam.exe"
+If (not FileExists($sMBAM1)) Then
+	ShellExecute ($sMBAM2)
+	Endif
+
+If (not FileExists($sMBAM2)) Then
+	ShellExecute ($sMBAM1)
+	Endif
+
+If (not FileExists($sMBAM1)) AND (not FileExists($sMBAM2)) Then
+	MsgBox(64,"Error Malwarebytes", "Download & Install Malwarebytes")
+ShellExecute ("https://malwarebytes.com/")
 
 ProcessWaitClose("mbam.exe")
 Endif
