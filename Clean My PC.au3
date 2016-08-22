@@ -26,6 +26,7 @@
 ; ==================
 ; save hosts
 
+If MsgBox(4, "Protect Hosts", "You want to protect your hosts ?") = 6 Then
 Global $saved = "C:\Windows\System32\drivers\etc\hosts"
 If Not FileExists($saved) Then FileCopy($sPath, $saved) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
@@ -33,6 +34,7 @@ If Not FileExists($backup) Then FileCopy($saved, $backup)
 MsgBox(64,"Success", "Your hosts is saved")
 FileInstall ("Clean\hosts", "C:\Windows\System32\drivers\etc\hosts", 1)
 MsgBox(64,"Success", "New hosts is installed")
+Endif
 
 ; ==================
 ; update launcher
@@ -112,6 +114,7 @@ MsgBox(64,"Success", "Extract")
 EndFunc   ;==>_CheckVersion
 
 ;Lancement du prog d'installation
+If MsgBox(4, "Remove Malware & Adware", "You want to remove Malware and Adware from your PC ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\rkill.exe")
 
 ProcessWaitClose("rkill.exe")
@@ -137,16 +140,23 @@ Send("{TAB}")
 Send("{ENTER}")
 
 ProcessWaitClose("adwcleaner.exe")
+Endif
 
+If MsgBox(4, "Install Malwarebytes", "You want to install Malwarebytes ?") = 6 Then
 ShellExecuteWait("clean\mbam-setup-2.2.1.1043.exe", "/silent /norestart", @ScriptDir)
 
 ShellExecute ("C:\Program Files (x86)\Malwarebytes Anti-Malware\mbam.exe")
 
 ProcessWaitClose("mbam.exe")
+Endif
 
+If MsgBox(4, "Scan for Virus", "You want to scan for virus ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\ClamWinPortable\ClamWinPortable.exe")
+ProcessWaitClose("ClamWinPortable.exe")
+Endif
 
-If MsgBox(4, "Remove Malwarebytes", "You want to remove malwarebytes ?") = 6 Then
+If MsgBox(4, "Clean Install", "You want to clean install ?") = 6 Then
+	DirRemove("C:/AdwCleaner/", 1)
 ShellExecuteWait("clean\mbam-clean-2.3.0.1001.exe", "/silent /norestart", @ScriptDir)
 Endif
 
