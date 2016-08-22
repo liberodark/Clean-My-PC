@@ -1,6 +1,8 @@
 #RequireAdmin
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Outfile_type=a3x
+#AutoIt3Wrapper_Outfile=C:\Users\bill6\OneDrive\Documents\GitHub\Clean-My-PC\Clean My PC.a3x
+#AutoIt3Wrapper_Res_requestedExecutionLevel=requireAdministrator
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #cs ----------------------------------------------------------------------------
 
@@ -129,19 +131,6 @@ Send("JRT.exe{ENTER}")
 ProcessWaitClose("jrt.exe")
 
 ShellExecute (@ScriptDir & "\clean\adwcleaner.exe")
-
-;Récupération du "handler" de la fenêtre
-$Hndl = WinGetHandle("- AdwCleaner - Conditions d'utilisation -")
-
-;Fournir le focus à Adwcleaner
-WinActivate($Hndl)
-
-;Attente de la fenêtre principal du programme
-WinWaitActive ("- AdwCleaner - v6.000 - Toolslib -")
-
-;Lancer la fonction de scan
-Send("{TAB}")
-Send("{ENTER}")
 
 ProcessWaitClose("adwcleaner.exe")
 Endif
