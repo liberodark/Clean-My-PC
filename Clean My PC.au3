@@ -13,10 +13,6 @@
 
 #ce ----------------------------------------------------------------------------
 
-; Script Start - Add your code below here
-
-;Application nécéssitant les droit d'admin
-
 #include <WinApi.au3>
 #include <GuiConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -28,7 +24,7 @@
 #include <WinAPIFiles.au3>
 
 ; ==================
-; save hosts
+; save & install hosts
 
 If MsgBox(4, "Protect Hosts", "You want to protect your hosts ?") = 6 Then
 Global $sHostsPath = "C:\Windows\System32\drivers\etc\hosts"
