@@ -136,25 +136,23 @@ ProcessWaitClose("adwcleaner.exe")
 Endif
 
 If MsgBox(4, "Install Malwarebytes", "You want to install Malwarebytes ?") = 6 Then
-ShellExecuteWait("clean\mbam-setup-2.2.1.1043.exe", "/silent /norestart", @ScriptDir)
+ShellExecuteWait("clean\mbam-setup-2.2.1.1043.exe", "/verysilent /norestart", @ScriptDir)
+EndIf
 
-; Check mbam.exe
 Local $sMBAM1 = "C:\Program Files (x86)\Malwarebytes Anti-Malware\mbam.exe"
 Local $sMBAM2 = "C:\Program Files\Malwarebytes Anti-Malware\mbam.exe"
 If (not FileExists($sMBAM1)) Then
 	ShellExecute ($sMBAM2)
+	Endif
 
 If (not FileExists($sMBAM2)) Then
 	ShellExecute ($sMBAM1)
+	EndIf
 
 If (not FileExists($sMBAM1)) AND (not FileExists($sMBAM2)) Then
 	MsgBox(64,"Error Malwarebytes", "Download & Install Malwarebytes")
-ShellExecute ("https://malwarebytes.com/")
-
-ProcessWaitClose("mbam.exe")
-Endif
-Endif
-Endif
+	ShellExecute ("https://malwarebytes.com/")
+	ProcessWaitClose("mbam.exe")
 Endif
 
 If MsgBox(4, "Scan for Virus", "You want to scan for virus ?") = 6 Then
@@ -163,9 +161,9 @@ ProcessWaitClose("ClamWinPortable.exe")
 Endif
 
 If MsgBox(4, "Clean Install", "You want to clean install ?") = 6 Then
-	DirRemove("C:/AdwCleaner/", 1)
-	DirRemove("Clean", 1)
-ShellExecuteWait("clean\mbam-clean-2.3.0.1001.exe", "/silent /norestart", @ScriptDir)
+ShellExecuteWait("clean\mbam-clean-2.3.0.1001.exe", "/silentnoreboot", @ScriptDir)
+DirRemove("C:/AdwCleaner/", 1)
+DirRemove("Clean", 1)
 Endif
 
 ;Fin du programme
