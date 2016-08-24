@@ -38,7 +38,7 @@ Endif
 
 ; ==================
 ;Select your Program
-If MsgBox(4, "Remove Process", "You want to launch rkill ?") = 6 Then
+If MsgBox(4, "Remove Process", "You want to launch RKill ?") = 6 Then
 ShellExecute (@ScriptDir & "\clean\rkill.exe")
 ProcessWaitClose("rkill.exe")
 Endif

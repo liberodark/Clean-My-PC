@@ -1,0 +1,34 @@
+CMD
+Supprimer mise en veille prolongé
+powercfg -h off
+powercfg -h on
+
+Nettoyer votre cache DNS
+ipconfig /flushdns
+
+Autoit 
+RegDelete("HKEY_CURRENT_USER\Software\Test", "TestKey")
+
+() Check Memory
+
+() Check Disk Space
+
+() Clean Temp Folders
+
+() Delete old profile past 30days
+
+() Clear any Memory dumps
+
+() Remove software not approved (reads form INI file)
+
+() Clear Temp file, *.bak, and so on…
+
+() Clean Registry????
+
+() Other... GPO Update, MS App-V reset, offline cache reset..bla,bla,bla
+
+() Defrag C:
+
+() E-mail results
+
+() Cleanup and script files
