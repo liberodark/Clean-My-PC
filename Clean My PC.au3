@@ -71,7 +71,7 @@ FileDelete("Clean\JRT.exe")
 FileDelete("Clean\rkill.exe")
 FileDelete("Clean\RogueKiller.exe")
 FileDelete("Clean\ZHPCleaner.exe")
-FileDelete("Clean\hosts")
+FileDelete("Clean\hosts.txt")
 MsgBox(64,"Success", "Remove")
 
 $7zaPath = @ScriptDir & "\Clean\7za.exe"
@@ -113,7 +113,8 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-FileInstall ("Clean\hosts", "C:\Windows\System32\drivers\etc\hosts", 1)
+FileCopy ("Clean\hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
+ShellExecute (@ScriptDir & "\clean\DNS.bat"
 MsgBox(64,"Success", "New hosts is installed")
 Endif
 
@@ -160,9 +161,6 @@ If FileExists($sMBAM1) Then      ; check $sMBAM1
 ElseIf FileExists($sMBAM2) Then   ; check $sMBAM2
         ShellExecuteWait($sMBAM2)
         ProcessWaitClose("mbam.exe")
-Else    ; And ...
-    MsgBox(64,"Error Malwarebytes", "Download & Install Malwarebytes")
-    ShellExecute ("https://malwarebytes.com/")
 Endif
 
 If MsgBox(4, "Scan for Virus", "You want to scan for virus ?") = 6 Then
