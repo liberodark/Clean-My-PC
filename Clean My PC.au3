@@ -113,13 +113,10 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
+RunWait(@ComSpec & " /c " & 'net stop Dnscache', "", @SW_HIDE)
+RegWrite("HKLM\SYSTEM\CurrentControlSet\services\Dnscache /v Start /t REG_DWORD /d 3 /f")
 FileCopy ("Clean\hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
 MsgBox(64,"Success", "New hosts is installed")
-Endif
-
-If MsgBox(4, "Remove DNS Client", "You want to stop DNS ?") = 6 Then
-ShellExecute (@ScriptDir & "\clean\DNS.bat")
-ProcessWaitClose("DNS.bat")
 Endif
 
 ; ==================
