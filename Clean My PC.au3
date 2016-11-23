@@ -112,15 +112,18 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-RunWait("net stop Dnscache")
-RunWait("sc config Dnscache start= demand")
-;Local $sFilePath = @ScriptDir & "\Clean\hosts.txt"
-;Local $hDownload = InetGet("https://hosts-file.net/emd.txt", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
-;Do
-;Sleep(250)
-;Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
-;MsgBox(64,"Success", "New hosts is Updated")
+;RunWait("net stop Dnscache")
+;RunWait("sc config Dnscache start= disable")
+;RunWait("sc config Dnscache start= enable")
+;RunWait("sc config Dnscache start= demand")
+Local $sFilePath = @ScriptDir & "\Clean\hosts.txt"
+Local $hDownload = InetGet("https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-social/hosts", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+Do
+Sleep(250)
+Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
+MsgBox(64,"Success", "New hosts is Updated")
 FileCopy ("Clean\hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
+RunWait("ipconfig /flushdns")
 MsgBox(64,"Success", "New hosts is installed")
 Endif
 
