@@ -71,7 +71,6 @@ FileDelete("Clean\JRT.exe")
 FileDelete("Clean\rkill.exe")
 FileDelete("Clean\RogueKiller.exe")
 FileDelete("Clean\ZHPCleaner.exe")
-FileDelete("Clean\hosts.txt")
 MsgBox(64,"Success", "Remove")
 
 $7zaPath = @ScriptDir & "\Clean\7za.exe"
@@ -113,9 +112,15 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-Run("net stop Dnscache")
-Run("sc config Dnscache start= disabled")
-FileCopy ("Clean\hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
+RunWait("net stop Dnscache")
+RunWait("sc config Dnscache start= disabled")
+Local $sFilePath = @ScriptDir & "\Clean\emd.txt"
+Local $hDownload = InetGet("https://hosts-file.net/emd.txt", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+Do
+Sleep(250)
+Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
+MsgBox(64,"Success", "New hosts is Updated")
+FileCopy ("Clean\emd.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
 MsgBox(64,"Success", "New hosts is installed")
 Endif
 
