@@ -117,12 +117,13 @@ Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
 ;RunWait("sc config Dnscache start= enable")
 ;RunWait("sc config Dnscache start= demand")
 Local $sFilePath = @ScriptDir & "\Clean\hosts.txt"
-Local $hDownload = InetGet("https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-social/hosts", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+Local $hDownload = InetGet("https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 Do
 Sleep(250)
 Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
 MsgBox(64,"Success", "New hosts is Updated")
 FileCopy ("Clean\hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
+FileDelete("C:\Windows\System32\drivers\etc\hosts.tmp")
 RunWait("ipconfig /flushdns")
 MsgBox(64,"Success", "New hosts is installed")
 Endif
