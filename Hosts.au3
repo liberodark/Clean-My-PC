@@ -32,8 +32,8 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-;RunWait("net stop Dnscache")
-;RunWait("sc config Dnscache start= disable")
+RunWait("net stop Dnscache")
+RunWait("sc config Dnscache start= disable")
 ;RunWait("sc config Dnscache start= enable")
 ;RunWait("sc config Dnscache start= demand")
 Local $sFilePath = @ScriptDir & "hosts.txt"
