@@ -37,7 +37,7 @@ Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
 ;RunWait("sc config Dnscache start= enable")
 ;RunWait("sc config Dnscache start= demand")
 Local $sFilePath = @ScriptDir & "hosts.txt"
-Local $hDownload = InetGet("https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+Local $hDownload = InetGet("https://raw.githubusercontent.com/liberodark/Clean-My-PC/master/HOSTS.txt", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 Do
 Sleep(250)
 Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
