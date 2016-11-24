@@ -18,7 +18,6 @@
 #include <GUIConstantsEx.au3>
 #include <File.au3>
 #include <FileConstants.au3>
-#include <7zaExe.au3>
 #include <InetConstants.au3>
 #include <MsgBoxConstants.au3>
 #include <WinAPIFiles.au3>
@@ -36,13 +35,13 @@ RunWait("net stop Dnscache")
 RunWait("sc config Dnscache start= disable")
 ;RunWait("sc config Dnscache start= enable")
 ;RunWait("sc config Dnscache start= demand")
-Local $sFilePath = @ScriptDir & "hosts.txt"
-Local $hDownload = InetGet("https://raw.githubusercontent.com/liberodark/Clean-My-PC/master/HOSTS.txt", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+Local $sFilePath = @TempDir & "\hosts.txt"
+Local $hDownload = InetGet("https://github.com/liberodark/Clean-My-PC/blob/master/HOSTS.txt?raw=true", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 Do
 Sleep(250)
 Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
 MsgBox(64,"Success", "New hosts is Updated")
-FileCopy ("hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
+FileMove ("hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
 FileDelete("C:\Windows\System32\drivers\etc\hosts.tmp")
 RunWait("ipconfig /flushdns")
 MsgBox(64,"Success", "New hosts is installed")
