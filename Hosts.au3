@@ -35,8 +35,8 @@ RunWait("net stop Dnscache")
 RunWait("sc config Dnscache start= disable")
 ;RunWait("sc config Dnscache start= enable")
 ;RunWait("sc config Dnscache start= demand")
-Local $sFilePath = @TempDir & "\hosts.txt"
-Local $hDownload = InetGet("https://github.com/liberodark/Clean-My-PC/blob/master/HOSTS.txt?raw=true", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+Local $sFilePath = @ScriptDir & "\hosts.txt"
+Local $hDownload = InetGet("http://yurfile.altervista.org/download.php?fid=L0NNUC9ob3N0cy50eHQ=", $sFilePath, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 Do
 Sleep(250)
 Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
