@@ -186,6 +186,10 @@ If MsgBox(4, "Clean Install", "You want to clean install ?") = 6 Then
 ShellExecuteWait("clean\mbam-clean-2.3.0.1001.exe", "/silentnoreboot", @ScriptDir)
 DirRemove("C:/AdwCleaner/", 1)
 DirRemove("Clean", 1)
+FileDelete("version.dat")
+FileDelete(@DesktopDir & "\JRT.txt")
+FileDelete(@DesktopDir & "\Rkill.txt")
+FileDelete(@DesktopDir & "\ZHPCleaner.ink")
 Endif
 
 Exit
