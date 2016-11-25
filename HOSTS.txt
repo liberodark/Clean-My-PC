@@ -34728,7 +34728,6 @@
 0.0.0.0 1facebook.no-ip.org
 0.0.0.0 1fcmg.de
 0.0.0.0 1fee.com
-0.0.0.0 1fichier.com
 0.0.0.0 1fifa.com
 0.0.0.0 1fm.com
 0.0.0.0 1for1.com
@@ -86355,3 +86354,11 @@
 0.0.0.0 www.humancheck.biz
 0.0.0.0 mng32.ru
 0.0.0.0 www.mng32.ru
+0.0.0.0 www.generateurdekamasgratuit.com
+0.0.0.0 eu.sxserv.com
+0.0.0.0 www.eu.sxserv.com
+0.0.0.0 dofuskamas.cheatgame.biz
+0.0.0.0 www.dofuskamas.cheatgame.biz
+0.0.0.0 c.ecsc.woopic.com
+0.0.0.0 promo.streaming-direct.co
+0.0.0.0 c.tnkexchange.com
