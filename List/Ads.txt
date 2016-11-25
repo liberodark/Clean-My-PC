@@ -1,3 +1,0 @@
-https://raw.githubusercontent.com/Dawsey21/Lists/master/adblock-list.txt
-https://easylist-downloads.adblockplus.org/malwaredomains_full.txt
-https://easylist-downloads.adblockplus.org/adwarefilters.txt
