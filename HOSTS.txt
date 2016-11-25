@@ -86362,3 +86362,17 @@
 0.0.0.0 c.ecsc.woopic.com
 0.0.0.0 promo.streaming-direct.co
 0.0.0.0 c.tnkexchange.com
+0.0.0.0 static.chameleon.ad
+0.0.0.0 d2ymkpxi1rgldj.cloudfront.net
+0.0.0.0 web-clients.mynativeplatform.com
+0.0.0.0 www.adspredictiv.com
+0.0.0.0 ads.uptobox.com
+0.0.0.0 www.ads.uptobox.com
+0.0.0.0 www.static.chameleon.ad
+0.0.0.0 adwidecenter.com
+0.0.0.0 www.adwidecenter.com
+0.0.0.0 www.asset.pagefair.net
+0.0.0.0 gsn.chameleon.ad
+0.0.0.0 www.gsn.chameleon.ad
+0.0.0.0 fit-mom-daily.ecig-elec.com
+0.0.0.0 www.fit-mom-daily.ecig-elec.com
