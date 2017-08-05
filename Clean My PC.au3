@@ -112,7 +112,7 @@ If Not FileExists($sHostsPath) Then Exit MsgBox(48, "error", "hosts absent")
 Global $savedHosts = "C:\Windows\System32\drivers\etc\hosts.bak"
 If Not FileExists($savedHosts) Then FileCopy($sHostsPath, $savedHosts) ; backup in launch
 Global $backup = "C:\Windows\System32\drivers\etc\hosts.bak"
-;RunWait("net stop Dnscache")
+RunWait("net stop Dnscache && sc config Dnscache start= disabled")
 ;RunWait("sc config Dnscache start= disable")
 ;RunWait("sc config Dnscache start= enable")
 ;RunWait("sc config Dnscache start= demand")
@@ -123,8 +123,8 @@ Sleep(250)
 Until InetGetInfo($hDownload, $INET_DOWNLOADCOMPLETE)
 MsgBox(64,"Success", "New hosts is Updated")
 FileCopy ("Clean\hosts.txt", "C:\Windows\System32\drivers\etc\hosts", 1)
-FileDelete("C:\Windows\System32\drivers\etc\hosts.tmp")
-RunWait("ipconfig /flushdns")
+;FileDelete("C:\Windows\System32\drivers\etc\hosts.tmp")
+;;RunWait("ipconfig /flushdns")
 MsgBox(64,"Success", "New hosts is installed")
 Endif
 
@@ -185,12 +185,12 @@ Endif
 If MsgBox(4, "Clean Install", "You want to clean install ?") = 6 Then
 ShellExecuteWait("clean\mbam-clean-2.3.0.1001.exe", "/silentnoreboot", @ScriptDir)
 DirRemove("C:/AdwCleaner/", 1)
-DirRemove(@AppDataDir & "\Roaming\ZHP")
+DirRemove(@AppDataDir & "/ZHP", 1)
 DirRemove("Clean", 1)
 FileDelete("version.dat")
 FileDelete(@DesktopDir & "\JRT.txt")
 FileDelete(@DesktopDir & "\Rkill.txt")
-FileDelete(@DesktopDir & "\ZHPCleaner.ink")
+FileDelete(@DesktopDir & "\ZHPCleaner.lnk")
 Endif
 
 Exit
